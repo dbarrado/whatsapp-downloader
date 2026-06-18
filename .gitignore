@@ -1,0 +1,9 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+downloads/
+config.json
+bitacora.jsonl
+qr.png
+qr-setup.png
+*.log

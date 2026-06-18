@@ -1,0 +1,16 @@
+{
+  "name": "whatsapp-downloader",
+  "version": "1.0.0",
+  "description": "Descarga automática de archivos y texto desde grupos de WhatsApp — solo recepción",
+  "type": "module",
+  "scripts": {
+    "setup": "node --use-system-ca setup.mjs",
+    "start": "node --use-system-ca index.mjs",
+    "bitacora": "node --use-system-ca ver-bitacora.mjs"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.26.1"
+  }
+}

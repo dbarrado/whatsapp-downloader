@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {
+      "name": "Cobranzas Local",
+      "folder": "./downloads/cobranzas-local",
+      "descargarTexto": true
+    },
+    {
+      "name": "Cobranzas Transporte",
+      "folder": "./downloads/cobranzas-transporte",
+      "descargarTexto": false
+    }
+  ],
+  "bitacora": "./bitacora.jsonl"
+}
