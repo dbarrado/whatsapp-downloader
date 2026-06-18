@@ -64,10 +64,12 @@ client.on('qr', async (qr) => {
 });
 
 client.on('authenticated', () => {
-  if (fs.existsSync(QR_PATH)) fs.unlinkSync(QR_PATH);
+  if (fs.existsSync(QR_PATH)) {
+    fs.unlinkSync(QR_PATH);
+    exec('taskkill /F /IM Microsoft.Photos.exe 2>nul & taskkill /F /IM dllhost.exe /FI "WINDOWTITLE eq qr*" 2>nul', () => {});
+  }
   console.log('─'.repeat(60));
   console.log('  ✅ ¡Listo! WhatsApp conectado correctamente.');
-  console.log('     Ya podés cerrar la imagen del QR si sigue abierta.');
   console.log('─'.repeat(60) + '\n');
 });
 

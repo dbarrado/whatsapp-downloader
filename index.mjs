@@ -87,7 +87,10 @@ client.on('qr', async (qr) => {
 });
 
 client.on('authenticated', () => {
-  if (fs.existsSync(QR_PATH)) fs.unlinkSync(QR_PATH);
+  if (fs.existsSync(QR_PATH)) {
+    fs.unlinkSync(QR_PATH);
+    exec('taskkill /F /IM Microsoft.Photos.exe 2>nul', () => {});
+  }
   console.log('✅ Autenticado. Sesión guardada.\n');
 });
 
