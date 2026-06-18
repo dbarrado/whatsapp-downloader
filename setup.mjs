@@ -45,9 +45,11 @@ const client = new Client({
 
 const QR_PATH = './qr-setup.png';
 
+let qrAbierto = false;
 client.on('qr', async (qr) => {
   await QRCode.toFile(QR_PATH, qr, { width: 400, margin: 2 });
-  exec(`start "" "${QR_PATH}"`);
+  if (!qrAbierto) { exec(`start "" "${QR_PATH}"`); qrAbierto = true; }
+  else { console.log('  🔄 QR renovado — la imagen se actualizó automáticamente.\n'); return; }
   console.log('\n─'.repeat(60));
   console.log('  PASO 1 — Escaneá el código QR');
   console.log('─'.repeat(60));

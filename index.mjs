@@ -73,11 +73,17 @@ const client = new Client({
 
 const QR_PATH = './qr.png';
 
+let qrAbierto = false;
 client.on('qr', async (qr) => {
   await QRCode.toFile(QR_PATH, qr, { width: 400, margin: 2 });
-  console.log('\n📱 Escaneá el QR que se abrió en pantalla.');
-  console.log('   WhatsApp → ··· → Dispositivos vinculados → Vincular dispositivo\n');
-  exec(`start "" "${QR_PATH}"`);
+  if (!qrAbierto) {
+    exec(`start "" "${QR_PATH}"`);
+    qrAbierto = true;
+    console.log('\n📱 Escaneá el QR que se abrió en pantalla.');
+    console.log('   WhatsApp → ··· → Dispositivos vinculados → Vincular dispositivo\n');
+  } else {
+    console.log('🔄 QR renovado automáticamente — la imagen se actualizó.\n');
+  }
 });
 
 client.on('authenticated', () => {
