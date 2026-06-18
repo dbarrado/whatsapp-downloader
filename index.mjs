@@ -3,7 +3,25 @@
  * Descarga archivos y texto de los grupos configurados en config.json
  * Uso: npm start
  *
- * ⚠️  Este programa es de SOLO LECTURA. No envía mensajes.
+ * ══ POLÍTICA DE SOLO LECTURA ══════════════════════════════════════════════
+ *
+ * Este programa escucha ÚNICAMENTE el evento 'message' (mensajes entrantes
+ * de otros contactos). Intencionalmente NO implementa:
+ *
+ *   ✗  client.sendMessage()     — envío de mensajes
+ *   ✗  evento 'message_create'  — captura de mensajes propios/enviados
+ *   ✗  respuestas automáticas   — cualquier forma de reply automático
+ *
+ * Si necesitás agregar envío de mensajes:
+ *   → Usá un número DEDICADO exclusivamente para este fin.
+ *   → WhatsApp detecta patrones de envío automatizado y puede banear la línea.
+ *   → El riesgo de ban aumenta significativamente con el volumen de envíos,
+ *     los destinatarios desconocidos, y los patrones no humanos (velocidad,
+ *     horario, repetición). Lectura pura tiene riesgo mínimo.
+ *   → Para envío en producción, evaluá la API oficial de WhatsApp Business:
+ *     https://business.whatsapp.com/products/business-platform
+ *
+ * ══════════════════════════════════════════════════════════════════════════
  */
 
 import pkg from 'whatsapp-web.js';
