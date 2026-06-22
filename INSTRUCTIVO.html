@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instructivo — WhatsApp Descarga Automática</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F9FAFB;
+    color: #111827;
+    padding: 48px 24px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 48px 52px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #E5E7EB;
+  }
+  .logo-block .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #2D1B69;
+  }
+  .logo-block .sub {
+    font-size: 12px;
+    color: #6B7280;
+    margin-top: 2px;
+  }
+  .badge {
+    background: #F0FDF4;
+    border: 1.5px solid #86EFAC;
+    color: #15803D;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1A0D4A;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: #6B7280;
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  /* Alert box */
+  .alert {
+    background: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #78350F;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .alert strong { color: #92400E; }
+
+  /* Info box */
+  .info {
+    background: #EFF6FF;
+    border-left: 4px solid #3B82F6;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #1E40AF;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    counter-increment: step;
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #2D1B69;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1A0D4A;
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    color: #374151;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.65;
+  }
+
+  .step-desc a {
+    color: #2D1B69;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1.5px solid #C4B5FD;
+  }
+
+  /* Code block */
+  .cmd {
+    background: #1E1B4B;
+    color: #A5F3FC;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 10px 0;
+    user-select: all;
+    cursor: text;
+    letter-spacing: 0.3px;
+  }
+
+  .cmd .comment {
+    color: #6B7280;
+    font-size: 12px;
+  }
+
+  /* Screenshot hint */
+  .hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #4B5563;
+  }
+  .hint-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* WhatsApp path */
+  .wa-path {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #15803D;
+    font-weight: 500;
+    margin: 8px 0;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1.5px solid #F3F4F6;
+    margin: 32px 0;
+  }
+
+  /* Section title */
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin-bottom: 20px;
+  }
+
+  /* Config block */
+  .config-block {
+    background: #FAFAF5;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 12px 0;
+  }
+  .config-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  .config-line .key { color: #7C3AED; }
+  .config-line .val { color: #059669; }
+  .config-line .comment-inline { color: #9CA3AF; font-size: 12px; }
+
+  /* Success block */
+  .success {
+    background: #F0FDF4;
+    border: 1.5px solid #86EFAC;
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: #15803D;
+    margin-top: 8px;
+  }
+  .success strong { color: #14532D; }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1.5px solid #F3F4F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+  .footer .brand-footer {
+    font-weight: 600;
+    color: #6B7280;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo-block">
+      <div class="brand">Strategic IA</div>
+      <div class="sub">Geo Delta · Sesión 4 · Junio 2026</div>
+    </div>
+    <div class="badge">Antes del lunes 23/6</div>
+  </div>
+
+  <h1>Instalación: descarga automática de archivos desde WhatsApp</h1>
+  <p class="subtitle">Este programa conecta tu WhatsApp al sistema de conciliación. Cada imagen o PDF que llegue al grupo designado se descarga automáticamente en tu computadora.</p>
+
+  <div class="alert">
+    <strong>Importante:</strong> usá un número de WhatsApp de prueba para esta instalación, no el número principal del estudio. Si ya tenés un celular secundario disponible, perfecto. Si no, Diego te indica cómo continuar en la sesión.
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">Paso a paso</div>
+
+  <div class="steps">
+
+    <!-- PASO 1 -->
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">Instalar Node.js (si no lo tenés)</div>
+        <div class="step-desc">
+          Node.js es el motor que corre el programa. Si ya lo instalaste en alguna sesión anterior del curso, saltá al paso 2.<br><br>
+          Descargá la versión <strong>LTS</strong> desde:
+          <a href="https://nodejs.org" target="_blank">nodejs.org</a>
+          → hacé clic en el botón verde grande que dice <strong>"Download Node.js (LTS)"</strong> → instalalo con todas las opciones por defecto (siguiente, siguiente, instalar).
+        </div>
+        <div class="hint">
+          <div class="hint-icon">✅</div>
+          <div>Para verificar que quedó instalado: abrí una ventana de comandos (tecla Windows → escribí <em>cmd</em> → Enter) y escribí <code>node --version</code>. Tiene que aparecer algo como <em>v20.x.x</em>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">Descargar y descomprimir el proyecto</div>
+        <div class="step-desc">
+          Diego te comparte una carpeta llamada <strong>whatsapp-geodelta.zip</strong> por Google Drive.<br>
+          Descargala y descomprimila (clic derecho → <em>Extraer todo</em>) en un lugar que recuerdes, por ejemplo en el Escritorio o en Documentos.
+        </div>
+        <div class="hint">
+          <div class="hint-icon">📁</div>
+          <div>Dentro vas a ver tres archivos: <em>index.js</em>, <em>package.json</em> y este instructivo. Eso es todo lo que necesitás.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">Abrir la terminal dentro de la carpeta</div>
+        <div class="step-desc">
+          Entrá a la carpeta que descomprimiste. Con la carpeta abierta en el Explorador de Windows, hacé clic en la barra de direcciones (arriba, donde dice la ruta) → escribí <strong>cmd</strong> → Enter.<br><br>
+          Se abre una ventana negra de comandos ya posicionada en la carpeta correcta.
+        </div>
+        <div class="hint">
+          <div class="hint-icon">💡</div>
+          <div>Alternativa: tecla Windows → escribí <em>cmd</em> → Enter → y luego escribí <code>cd </code> seguido de la ruta completa a la carpeta (podés arrastrar la carpeta a la ventana negra para pegar la ruta).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">Instalar las dependencias</div>
+        <div class="step-desc">
+          En la ventana negra, escribí el siguiente comando y presioná Enter:
+        </div>
+        <div class="cmd">npm install</div>
+        <div class="step-desc">
+          Esto descarga automáticamente todo lo que el programa necesita, incluyendo un navegador Chrome interno (~300 MB). <strong>Puede tardar entre 3 y 8 minutos dependiendo de la velocidad de internet.</strong> Esperá hasta que vuelva a aparecer el cursor parpadeante.
+        </div>
+        <div class="hint">
+          <div class="hint-icon">⏳</div>
+          <div>Si ves mensajes que pasan rápido con texto en verde o amarillo, es normal. Solo hay problema si aparece un mensaje en rojo que dice <em>ERROR</em>. En ese caso, avisale a Diego.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 5 -->
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <div class="step-title">Correr el programa</div>
+        <div class="step-desc">Una vez que terminó el paso 4, escribí:</div>
+        <div class="cmd">npm start</div>
+        <div class="step-desc">
+          El programa arranca. La primera vez tarda unos 20-30 segundos en aparecer el código QR. Vas a ver algo así en la pantalla:
+        </div>
+        <div class="cmd" style="color:#D1FAE5; font-size:12px; line-height:1.8;">
+          🔄 Iniciando WhatsApp Web...<br><br>
+          ────────────────────────────────────────<br>
+          &nbsp;&nbsp;Escaneá este QR desde WhatsApp en tu celular<br>
+          ────────────────────────────────────────<br><br>
+          &nbsp;&nbsp;█▀▀▀▀▀█ ▄▄▀▀▄▀ █▀▀▀▀▀█<br>
+          &nbsp;&nbsp;█ ███ █ ▀ ▀▄▀▀ █ ███ █<br>
+          &nbsp;&nbsp;█ ▀▀▀ █ ▄█▄▀▄▀ █ ▀▀▀ █<br>
+          &nbsp;&nbsp;▀▀▀▀▀▀▀ █ █ █ █ ▀▀▀▀▀▀▀<br>
+          &nbsp;&nbsp;...<br>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 6 -->
+    <div class="step">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <div class="step-title">Escanear el QR con tu celular</div>
+        <div class="step-desc">
+          Abrí WhatsApp en el celular de prueba y seguí este camino:
+        </div>
+        <div class="wa-path">⋮ Menú → Dispositivos vinculados → Vincular dispositivo</div>
+        <div class="step-desc">
+          Apuntá la cámara al código QR que aparece en la pantalla negra. En unos segundos vas a ver en la terminal:
+        </div>
+        <div class="success">
+          <strong>✅ Autenticado. La sesión queda guardada — el próximo inicio no necesita QR.</strong><br>
+          🟢 Conectado a WhatsApp Web. Escuchando archivos de todos los grupos.
+        </div>
+        <div class="hint" style="margin-top:12px;">
+          <div class="hint-icon">🔁</div>
+          <div>La sesión queda guardada. La próxima vez que corras <code>npm start</code> no necesitás escanear el QR de nuevo.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">Configuración opcional — filtrar por grupo</div>
+
+  <p class="step-desc" style="margin-bottom:14px;">
+    Por defecto el programa escucha <strong>todos los grupos</strong>. Si querés que solo descargue de un grupo específico, abrí el archivo <em>index.js</em> con el Bloc de notas y buscá esta línea al principio:
+  </p>
+  <div class="config-block">
+    <div class="config-line"><span class="key">const</span> GRUPO = <span class="val">''</span>; <span class="comment-inline">// vacío = todos los grupos</span></div>
+  </div>
+  <p class="step-desc" style="margin: 12px 0;">
+    Reemplazá las comillas vacías con el nombre exacto del grupo (copialo de WhatsApp para no equivocarte):
+  </p>
+  <div class="config-block">
+    <div class="config-line"><span class="key">const</span> GRUPO = <span class="val">'Cobranzas Geo Delta'</span>;</div>
+  </div>
+  <p class="step-desc">Guardá el archivo y volvé a correr <code>npm start</code>.</p>
+
+  <hr class="divider">
+  <div class="section-title">¿Dónde quedan los archivos descargados?</div>
+
+  <p class="step-desc">
+    Dentro de la carpeta del programa, se crea automáticamente una carpeta llamada <strong>downloads/</strong>. Cada archivo se guarda con el nombre en formato:<br>
+    <code style="font-family: 'JetBrains Mono'; background:#F3F4F6; padding:2px 6px; border-radius:4px;">2026-06-22_10-30-00_NombreContacto.jpg</code><br><br>
+    La terminal también muestra un mensaje cada vez que llega y se descarga un archivo nuevo.
+  </p>
+
+  <hr class="divider">
+  <div class="section-title">Si algo no funciona</div>
+
+  <div class="hint" style="margin-bottom:10px;">
+    <div class="hint-icon">❌</div>
+    <div><strong>El QR no aparece o tarda demasiado:</strong> cerrá la terminal con Ctrl+C y volvé a correr <code>npm start</code>.</div>
+  </div>
+  <div class="hint" style="margin-bottom:10px;">
+    <div class="hint-icon">❌</div>
+    <div><strong>Error en <code>npm install</code>:</strong> capturá una foto de la pantalla y mandásela a Diego antes de la sesión del lunes.</div>
+  </div>
+  <div class="hint">
+    <div class="hint-icon">❌</div>
+    <div><strong>El QR apareció pero no pude escanearlo a tiempo:</strong> el QR expira en ~30 segundos. Cerrá con Ctrl+C y volvé a correr <code>npm start</code> para generar uno nuevo.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECCIÓN AVANZADA: OPCIÓN EN LA NUBE
+       ═══════════════════════════════════════════════════════ -->
+
+  <div class="section-title">Opción avanzada — funcionar aunque la PC esté apagada</div>
+
+  <p class="step-desc" style="margin-bottom:20px;">
+    La instalación que hiciste en los pasos anteriores funciona <strong>solo mientras tu computadora está encendida y el programa está corriendo</strong>. Si cerrás la ventana o apagás la PC, los archivos dejan de descargarse.<br><br>
+    Si necesitás que el sistema funcione las 24 horas sin depender de ninguna computadora, la solución es instalarlo en un <strong>servidor en la nube</strong>. Acá explicamos dos opciones para hacerlo.
+  </p>
+
+  <!-- Card: ¿Qué es un servidor en la nube? -->
+  <div style="background:#F8FAFF; border:1.5px solid #C7D7FD; border-radius:12px; padding:22px 24px; margin-bottom:20px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4F67B8; margin-bottom:10px;">¿Qué es un servidor en la nube?</div>
+    <p class="step-desc" style="margin-bottom:0;">
+      Imaginá una computadora que nunca se apaga, está conectada a internet las 24 horas y la alquila una empresa por un precio mensual fijo. Eso es un <strong>servidor en la nube</strong>. Vos instalás tu programa ahí, y corre solo — sin que nadie tenga que hacer nada.
+    </p>
+  </div>
+
+  <!-- Opción A: Railway -->
+  <div style="background:#F0FDF4; border:1.5px solid #86EFAC; border-radius:12px; padding:22px 24px; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+      <div style="background:#15803D; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; padding:4px 10px; border-radius:4px; letter-spacing:1px;">OPCIÓN A</div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; color:#14532D;">Railway — el camino más fácil</div>
+      <div style="margin-left:auto; font-size:13px; font-weight:600; color:#15803D;">~USD 5–10 / mes</div>
+    </div>
+
+    <p class="step-desc" style="margin-bottom:12px;">
+      <strong>Railway</strong> es una plataforma que instalas el programa con un clic y ellos se encargan de todo: el servidor, los backups, que no se caiga. No hace falta saber nada técnico para usarlo.
+    </p>
+
+    <div style="background:#DCFCE7; border-radius:8px; padding:14px 16px; margin-bottom:14px; font-size:13px; color:#14532D; line-height:1.7;">
+      <strong>Cómo funciona:</strong><br>
+      1. Creás una cuenta en <strong>railway.app</strong><br>
+      2. Hacés clic en "Deploy" sobre la plantilla de Evolution API<br>
+      3. Conectás tu WhatsApp escaneando un QR (igual que antes)<br>
+      4. Listo — el sistema corre solo, las 24 horas
+    </div>
+
+    <div class="hint">
+      <div class="hint-icon">💡</div>
+      <div><strong>Diferencia con la instalación local:</strong> en vez de correr en tu PC, corre en un servidor de Railway. Vos solo ves los resultados (archivos descargados) desde cualquier lugar.</div>
+    </div>
+  </div>
+
+  <!-- Opción B: VPS propio -->
+  <div style="background:#FFF7ED; border:1.5px solid #FED7AA; border-radius:12px; padding:22px 24px; margin-bottom:20px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+      <div style="background:#C2410C; color:#fff; font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; padding:4px 10px; border-radius:4px; letter-spacing:1px;">OPCIÓN B</div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; color:#7C2D12;">VPS propio — más control, mismo precio</div>
+      <div style="margin-left:auto; font-size:13px; font-weight:600; color:#C2410C;">~USD 4–12 / mes</div>
+    </div>
+
+    <p class="step-desc" style="margin-bottom:12px;">
+      Un <strong>VPS</strong> (servidor privado virtual) es como alquilar tu propia computadora en la nube. Tenés más control que con Railway, pero también hay que configurar más cosas al principio. Proveedores populares: <strong>Hetzner</strong>, <strong>DigitalOcean</strong>, <strong>Hostinger</strong>.
+    </p>
+
+    <div class="hint">
+      <div class="hint-icon">⚠️</div>
+      <div>Esta opción requiere ayuda técnica para la configuración inicial. Ideal si ya tienen alguien de sistemas en el equipo, o si Diego lo configura en una sesión aparte.</div>
+    </div>
+  </div>
+
+  <!-- Tabla comparativa -->
+  <div style="margin-bottom:20px;">
+    <div style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#9CA3AF; margin-bottom:14px;">¿Cuál elegir?</div>
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="background:#F3F4F6;">
+          <th style="text-align:left; padding:10px 12px; font-weight:600; color:#374151; border-radius:6px 0 0 6px;">Situación</th>
+          <th style="text-align:center; padding:10px 12px; font-weight:600; color:#374151;">Instalación local<br><span style="font-size:11px; color:#9CA3AF;">(lo que ya tenés)</span></th>
+          <th style="text-align:center; padding:10px 12px; font-weight:600; color:#374151;">Railway</th>
+          <th style="text-align:center; padding:10px 12px; font-weight:600; color:#374151; border-radius:0 6px 6px 0;">VPS propio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #F3F4F6;">
+          <td style="padding:10px 12px; color:#374151;">Funciona con PC apagada</td>
+          <td style="text-align:center; padding:10px 12px; color:#EF4444;">✗</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F3F4F6;">
+          <td style="padding:10px 12px; color:#374151;">Fácil de instalar</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+          <td style="text-align:center; padding:10px 12px; color:#F59E0B;">Medio</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F3F4F6;">
+          <td style="padding:10px 12px; color:#374151;">Costo mensual</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">$0</td>
+          <td style="text-align:center; padding:10px 12px; color:#374151;">USD 5–10</td>
+          <td style="text-align:center; padding:10px 12px; color:#374151;">USD 4–12</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F3F4F6;">
+          <td style="padding:10px 12px; color:#374151;">Requiere ayuda técnica</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">No</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">No</td>
+          <td style="text-align:center; padding:10px 12px; color:#F59E0B;">Sí</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px; color:#374151;">Múltiples grupos a la vez</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+          <td style="text-align:center; padding:10px 12px; color:#16A34A;">✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert" style="margin-bottom:0;">
+    <strong>Recomendación:</strong> Para la reunión del lunes, usá la instalación local (pasos 1 al 6 de arriba). Si después del piloto ven que necesitan que funcione las 24 horas, el paso siguiente natural es Railway — Diego lo configura en una sesión de 30 minutos.
+  </div>
+
+  <p style="font-size:12px; color:#9CA3AF; margin-top:16px; line-height:1.6;">
+    El programa en la nube (Evolution API) utiliza el mismo protocolo que la instalación local. Las mismas consideraciones de uso responsable aplican: solo recepción de archivos, línea dedicada recomendada. Strategic IA no asume responsabilidad por restricciones o suspensiones de cuentas derivadas del uso de este software.
+  </p>
+
+  <div class="footer">
+    <div class="brand-footer">Strategic IA</div>
+    <div>Preparado para Sesión 4 · Claude Code in-company · Geo Delta</div>
+  </div>
+
+</div>
+</body>
+</html>
