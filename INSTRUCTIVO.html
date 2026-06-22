@@ -278,14 +278,14 @@
       <div class="brand">Strategic IA</div>
       <div class="sub">Geo Delta · Sesión 4 · Junio 2026</div>
     </div>
-    <div class="badge">Antes del lunes 23/6</div>
+    <div class="badge">Sesión de hoy · lunes 22/6</div>
   </div>
 
   <h1>Instalación: descarga automática de archivos desde WhatsApp</h1>
   <p class="subtitle">Este programa conecta tu WhatsApp al sistema de conciliación. Cada imagen o PDF que llegue al grupo designado se descarga automáticamente en tu computadora.</p>
 
   <div class="alert">
-    <strong>Importante:</strong> usá un número de WhatsApp de prueba para esta instalación, no el número principal del estudio. Se recomienda un chip secundario o prepago exclusivamente para este fin.
+    <strong>Importante:</strong> para esta instalación recomendamos usar un número de WhatsApp dedicado — un chip secundario o prepago reservado exclusivamente para este fin.
   </div>
 
   <div class="info">
@@ -293,7 +293,7 @@
   </div>
 
   <hr class="divider">
-  <div class="section-title">Instalación — 3 pasos</div>
+  <div class="section-title">Instalación — 2 pasos</div>
 
   <div class="steps">
 
@@ -301,16 +301,17 @@
     <div class="step">
       <div class="step-number">1</div>
       <div class="step-content">
-        <div class="step-title">Instalar Node.js (si no lo tenés)</div>
+        <div class="step-title">Pedirle a Claude que instale el programa</div>
         <div class="step-desc">
-          Node.js es el motor que corre el programa. Si ya lo instalaste en alguna sesión anterior del curso, pasá directo al paso 2.<br><br>
-          Descargá la versión <strong>LTS</strong> desde:
-          <a href="https://nodejs.org" target="_blank">nodejs.org</a>
-          → botón verde <strong>"Download Node.js (LTS)"</strong> → instalalo con todas las opciones por defecto.
+          Abrí Claude Code y pegá este mensaje tal cual:
+        </div>
+        <div class="cmd" style="user-select:all; cursor:text; line-height:1.8; color:#E0F2FE;">Instalá el proyecto whatsapp-downloader desde GitHub.<br><br>Repositorio: https://github.com/dbarrado/whatsapp-downloader<br><br>Soy usuario no técnico. Antes de empezar, verificá si tengo Node.js instalado y, si falta, instalalo vos. Después cloná el repositorio en el Escritorio, instalá las dependencias con npm install y arrancá el programa con npm run setup. No me pidas que ejecute comandos en la terminal — hacelo vos directamente.</div>
+        <div class="step-desc" style="margin-top:12px;">
+          Claude se encarga de todo: revisa que esté Node.js (y lo instala si falta), descarga el programa, lo instala y te abre un código QR en pantalla. <strong>Este proceso puede tardar entre 5 y 10 minutos</strong> (descarga un navegador interno la primera vez).
         </div>
         <div class="hint">
-          <div class="hint-icon">✅</div>
-          <div>Si tenés dudas de si ya lo instalaste, podés pedirle a Claude que lo verifique por vos.</div>
+          <div class="hint-icon">💡</div>
+          <div>Todo sucede dentro de Claude — no hace falta abrir carpetas, instalar nada a mano ni escribir comandos.</div>
         </div>
       </div>
     </div>
@@ -318,25 +319,6 @@
     <!-- PASO 2 -->
     <div class="step">
       <div class="step-number">2</div>
-      <div class="step-content">
-        <div class="step-title">Pedirle a Claude que instale el programa</div>
-        <div class="step-desc">
-          Abrí Claude Code y pegá este mensaje tal cual:
-        </div>
-        <div class="cmd" style="user-select:all; cursor:text; line-height:1.8; color:#E0F2FE;">Instalá el proyecto whatsapp-downloader desde GitHub.<br><br>Repositorio: https://github.com/dbarrado/whatsapp-downloader<br><br>Pasos: cloná el repositorio en el Escritorio, instalá las dependencias con npm install y arrancá el programa con npm run setup. No me pidas que ejecute comandos en la terminal — hacelo vos directamente.</div>
-        <div class="step-desc" style="margin-top:12px;">
-          Claude va a descargar el programa, instalarlo y abrirte un código QR en pantalla. <strong>Este proceso puede tardar entre 5 y 10 minutos</strong> (descarga un navegador interno la primera vez).
-        </div>
-        <div class="hint">
-          <div class="hint-icon">💡</div>
-          <div>Todo sucede en Claude — no hace falta abrir carpetas ni escribir comandos.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASO 3 -->
-    <div class="step">
-      <div class="step-number">3</div>
       <div class="step-content">
         <div class="step-title">Escanear el QR con tu celular</div>
         <div class="step-desc">
