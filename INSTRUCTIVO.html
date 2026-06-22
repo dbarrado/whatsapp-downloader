@@ -293,7 +293,7 @@
   </div>
 
   <hr class="divider">
-  <div class="section-title">Paso a paso</div>
+  <div class="section-title">Instalación — 3 pasos</div>
 
   <div class="steps">
 
@@ -303,14 +303,14 @@
       <div class="step-content">
         <div class="step-title">Instalar Node.js (si no lo tenés)</div>
         <div class="step-desc">
-          Node.js es el motor que corre el programa. Si ya lo instalaste en alguna sesión anterior del curso, saltá al paso 2.<br><br>
+          Node.js es el motor que corre el programa. Si ya lo instalaste en alguna sesión anterior del curso, pasá directo al paso 2.<br><br>
           Descargá la versión <strong>LTS</strong> desde:
           <a href="https://nodejs.org" target="_blank">nodejs.org</a>
-          → hacé clic en el botón verde grande que dice <strong>"Download Node.js (LTS)"</strong> → instalalo con todas las opciones por defecto (siguiente, siguiente, instalar).
+          → botón verde <strong>"Download Node.js (LTS)"</strong> → instalalo con todas las opciones por defecto.
         </div>
         <div class="hint">
           <div class="hint-icon">✅</div>
-          <div>Para verificar que quedó instalado: abrí una ventana de comandos (tecla Windows → escribí <em>cmd</em> → Enter) y escribí <code>node --version</code>. Tiene que aparecer algo como <em>v20.x.x</em>.</div>
+          <div>Si tenés dudas de si ya lo instalaste, podés pedirle a Claude que lo verifique por vos.</div>
         </div>
       </div>
     </div>
@@ -319,16 +319,17 @@
     <div class="step">
       <div class="step-number">2</div>
       <div class="step-content">
-        <div class="step-title">Descargar el proyecto desde GitHub</div>
+        <div class="step-title">Pedirle a Claude que instale el programa</div>
         <div class="step-desc">
-          Entrá a esta dirección en el navegador:<br>
-          <a href="https://github.com/dbarrado/whatsapp-downloader" target="_blank">github.com/dbarrado/whatsapp-downloader</a><br><br>
-          Hacé clic en el botón verde que dice <strong>"Code"</strong> → <strong>"Download ZIP"</strong>.<br>
-          Descargá el ZIP y descomprimilo (clic derecho → <em>Extraer todo</em>) en un lugar que recuerdes, por ejemplo en el Escritorio o en Documentos.
+          Abrí Claude Code y pegá este mensaje tal cual:
+        </div>
+        <div class="cmd" style="user-select:all; cursor:text; line-height:1.8; color:#E0F2FE;">Instalá el proyecto whatsapp-downloader desde GitHub.<br><br>Repositorio: https://github.com/dbarrado/whatsapp-downloader<br><br>Pasos: cloná el repositorio en el Escritorio, instalá las dependencias con npm install y arrancá el programa con npm run setup. No me pidas que ejecute comandos en la terminal — hacelo vos directamente.</div>
+        <div class="step-desc" style="margin-top:12px;">
+          Claude va a descargar el programa, instalarlo y abrirte un código QR en pantalla. <strong>Este proceso puede tardar entre 5 y 10 minutos</strong> (descarga un navegador interno la primera vez).
         </div>
         <div class="hint">
-          <div class="hint-icon">📁</div>
-          <div>Dentro de la carpeta vas a ver varios archivos, entre ellos <em>index.mjs</em>, <em>package.json</em> y este instructivo. Eso es todo lo que necesitás.</div>
+          <div class="hint-icon">💡</div>
+          <div>Todo sucede en Claude — no hace falta abrir carpetas ni escribir comandos.</div>
         </div>
       </div>
     </div>
@@ -337,110 +338,33 @@
     <div class="step">
       <div class="step-number">3</div>
       <div class="step-content">
-        <div class="step-title">Abrir la terminal dentro de la carpeta</div>
-        <div class="step-desc">
-          Entrá a la carpeta que descomprimiste. Con la carpeta abierta en el Explorador de Windows, hacé clic en la barra de direcciones (arriba, donde dice la ruta) → escribí <strong>cmd</strong> → Enter.<br><br>
-          Se abre una ventana negra de comandos ya posicionada en la carpeta correcta.
-        </div>
-        <div class="hint">
-          <div class="hint-icon">💡</div>
-          <div>Alternativa: tecla Windows → escribí <em>cmd</em> → Enter → y luego escribí <code>cd </code> seguido de la ruta completa a la carpeta (podés arrastrar la carpeta a la ventana negra para pegar la ruta).</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASO 4 -->
-    <div class="step">
-      <div class="step-number">4</div>
-      <div class="step-content">
-        <div class="step-title">Instalar las dependencias</div>
-        <div class="step-desc">
-          En la ventana negra, escribí el siguiente comando y presioná Enter:
-        </div>
-        <div class="cmd">npm install</div>
-        <div class="step-desc">
-          Esto descarga automáticamente todo lo que el programa necesita, incluyendo un navegador Chrome interno (~300 MB). <strong>Puede tardar entre 3 y 8 minutos dependiendo de la velocidad de internet.</strong> Esperá hasta que vuelva a aparecer el cursor parpadeante.
-        </div>
-        <div class="hint">
-          <div class="hint-icon">⏳</div>
-          <div>Si ves mensajes que pasan rápido con texto en verde o amarillo, es normal. Solo hay problema si aparece un mensaje en rojo que dice <em>ERROR</em>. En ese caso, avisale a Diego.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASO 5 -->
-    <div class="step">
-      <div class="step-number">5</div>
-      <div class="step-content">
-        <div class="step-title">Correr el programa</div>
-        <div class="step-desc">Una vez que terminó el paso 4, escribí:</div>
-        <div class="cmd">npm start</div>
-        <div class="step-desc">
-          El programa arranca. La primera vez tarda unos 20-30 segundos en aparecer el código QR. Vas a ver algo así en la pantalla:
-        </div>
-        <div class="cmd" style="color:#D1FAE5; font-size:12px; line-height:1.8;">
-          🔄 Iniciando WhatsApp Web...<br><br>
-          ────────────────────────────────────────<br>
-          &nbsp;&nbsp;Escaneá este QR desde WhatsApp en tu celular<br>
-          ────────────────────────────────────────<br><br>
-          &nbsp;&nbsp;█▀▀▀▀▀█ ▄▄▀▀▄▀ █▀▀▀▀▀█<br>
-          &nbsp;&nbsp;█ ███ █ ▀ ▀▄▀▀ █ ███ █<br>
-          &nbsp;&nbsp;█ ▀▀▀ █ ▄█▄▀▄▀ █ ▀▀▀ █<br>
-          &nbsp;&nbsp;▀▀▀▀▀▀▀ █ █ █ █ ▀▀▀▀▀▀▀<br>
-          &nbsp;&nbsp;...<br>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASO 6 -->
-    <div class="step">
-      <div class="step-number">6</div>
-      <div class="step-content">
         <div class="step-title">Escanear el QR con tu celular</div>
         <div class="step-desc">
-          Abrí WhatsApp en el celular de prueba y seguí este camino:
+          Cuando Claude termine, se abre automáticamente una imagen con un código QR. Abrí WhatsApp en el celular de prueba y seguí este camino:
         </div>
         <div class="wa-path">⋮ Menú → Dispositivos vinculados → Vincular dispositivo</div>
         <div class="step-desc">
-          Apuntá la cámara al código QR que aparece en la pantalla negra. En unos segundos vas a ver en la terminal:
+          Apuntá la cámara al código QR. En unos segundos aparece la confirmación:
         </div>
         <div class="success">
           <strong>✅ Autenticado. La sesión queda guardada — el próximo inicio no necesita QR.</strong><br>
-          🟢 Conectado a WhatsApp Web. Escuchando archivos de todos los grupos.
+          🟢 Conectado. El programa ya está escuchando tus grupos.
         </div>
         <div class="hint" style="margin-top:12px;">
           <div class="hint-icon">🔁</div>
-          <div>La sesión queda guardada. La próxima vez que corras <code>npm start</code> no necesitás escanear el QR de nuevo.</div>
+          <div>La sesión queda guardada. La próxima vez que lo uses no necesitás escanear el QR de nuevo.</div>
         </div>
       </div>
     </div>
 
   </div>
-
-  <hr class="divider">
-  <div class="section-title">Configuración opcional — filtrar por grupo</div>
-
-  <p class="step-desc" style="margin-bottom:14px;">
-    Por defecto el programa escucha <strong>todos los grupos</strong>. Si querés que solo descargue de un grupo específico, abrí el archivo <em>index.js</em> con el Bloc de notas y buscá esta línea al principio:
-  </p>
-  <div class="config-block">
-    <div class="config-line"><span class="key">const</span> GRUPO = <span class="val">''</span>; <span class="comment-inline">// vacío = todos los grupos</span></div>
-  </div>
-  <p class="step-desc" style="margin: 12px 0;">
-    Reemplazá las comillas vacías con el nombre exacto del grupo (copialo de WhatsApp para no equivocarte):
-  </p>
-  <div class="config-block">
-    <div class="config-line"><span class="key">const</span> GRUPO = <span class="val">'Cobranzas Geo Delta'</span>;</div>
-  </div>
-  <p class="step-desc">Guardá el archivo y volvé a correr <code>npm start</code>.</p>
 
   <hr class="divider">
   <div class="section-title">¿Dónde quedan los archivos descargados?</div>
 
   <p class="step-desc">
-    Dentro de la carpeta del programa, se crea automáticamente una carpeta llamada <strong>downloads/</strong>. Cada archivo se guarda con el nombre en formato:<br>
-    <code style="font-family: 'JetBrains Mono'; background:#F3F4F6; padding:2px 6px; border-radius:4px;">2026-06-22_10-30-00_NombreContacto.jpg</code><br><br>
-    La terminal también muestra un mensaje cada vez que llega y se descarga un archivo nuevo.
+    El programa crea automáticamente una carpeta <strong>downloads/</strong> dentro del proyecto. Cada archivo se guarda con el nombre del contacto y la fecha y hora de recepción:<br>
+    <code style="font-family: 'JetBrains Mono'; background:#F3F4F6; padding:2px 6px; border-radius:4px;">2026-06-22_10-30-00_NombreContacto.jpg</code>
   </p>
 
   <hr class="divider">
@@ -448,15 +372,15 @@
 
   <div class="hint" style="margin-bottom:10px;">
     <div class="hint-icon">❌</div>
-    <div><strong>El QR no aparece o tarda demasiado:</strong> cerrá la terminal con Ctrl+C y volvé a correr <code>npm start</code>.</div>
+    <div><strong>El QR no aparece:</strong> pedirle a Claude "el QR no apareció, reiniciá el programa".</div>
   </div>
   <div class="hint" style="margin-bottom:10px;">
     <div class="hint-icon">❌</div>
-    <div><strong>Error en <code>npm install</code>:</strong> capturá una foto de la pantalla y mandásela a Diego antes de la sesión del lunes.</div>
+    <div><strong>Error durante la instalación:</strong> copiá el mensaje de error y pegáselo a Claude — él lo diagnostica y lo resuelve.</div>
   </div>
   <div class="hint">
     <div class="hint-icon">❌</div>
-    <div><strong>El QR apareció pero no pude escanearlo a tiempo:</strong> el QR expira en ~30 segundos. Cerrá con Ctrl+C y volvé a correr <code>npm start</code> para generar uno nuevo.</div>
+    <div><strong>El QR apareció pero no llegué a escanearlo:</strong> pedirle a Claude "generá un QR nuevo".</div>
   </div>
 
   <hr class="divider">
